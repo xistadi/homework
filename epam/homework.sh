@@ -152,8 +152,10 @@ fi
 elif [[ $variable != sd? ]]
 then
 echo 'Incorrect drive name. Please input sd? type'
-else
+elif [ "$?" = "0" ] | ls /dev/$variable; then
 MY_ARRAY[i]=$variable
+else
+echo 'Incorrect drive name. ls check'
 fi
 done
 echo 'SUCCESS'
