@@ -26,18 +26,46 @@ echo ===========================================================================
 
 function config_local_repo {
 # add local DVD ISO as an repo(all internet repos need to be removed);
+while true
+do
+echo 'Input path to iso(/example/)'
+read pathISO
+if [[ $pathISO != /*/ ]]
+then
+echo 'Incorrect path to iso. Please input /example/ type.'
+elif [ "$?" = "0" ] | ls $pathISO ; then
+break
+else
+echo 'Incorrect path to iso'
+fi
+done
 echo -e 'Do you need to download iso? (1/2)
 1. Yes
 2. No'
 read tempOption
 if [[ $tempOption = 1 ]]
 then
-wget -P /home http://mirror.datacenter.by/pub/CentOS/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso && echo SUCCESS download iso
+wget -P $pathISO http://mirror.datacenter.by/pub/CentOS/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso && echo SUCCESS download iso
+nameISO=CentOS-7-x86_64-DVD-2009.iso
+elif [[ $tempOption = 2 ]]
+then
+while true
+do
+echo 'Input iso name'
+read nameISO
+if [[ $nameISO != *.iso ]]; then
+echo 'Incorrect name iso. Please input *.iso file'
+elif [ "$?" = "0" ] | ls $pathISO$nameISO; then
+break
+else
+echo 'Incorrect name iso'
+fi
+done
 fi
 yum -y install wget && echo SUCCESS install wget
 mkdir /cdrom && echo SUCCESS mkdir
-mount -o loop /home/CentOS-7-x86_64-DVD-2009.iso /cdrom
-echo '/home/CentOS-7-x86_64-DVD-2009.iso /cdrom iso9660 loop 0 0' >> /etc/fstab && echo SUCCESS mount the RAID using UUID
+mount -o loop $pathISO$nameISO /cdrom
+echo ''$pathISO$nameISO' /cdrom iso9660 loop 0 0' >> /etc/fstab && echo SUCCESS mount the RAID using UUID
 mount -a && echo SUCCESS automount
 rm -f /etc/yum.repos.d/*.repo && echo SUCCESS remove all repos
 echo -e '[LocalRepo]
@@ -83,6 +111,9 @@ echo ===========================================================================
 
 function config_nfs {
 # explode the folder into the network with NFS
+echo -e 'Please input mount point'
+read mountPoint
+echo 'SUCCESS'
 yum install nfs-utils nfs-utils-lib -y  && echo SUCCESS install nfs
 systemctl enable rpcbind
 systemctl enable nfs-server
@@ -92,7 +123,7 @@ systemctl start rpcbind
 systemctl start nfs-server
 systemctl start nfs-lock
 systemctl start nfs-idmap
-echo '/mnt/lvr5 192.168.10.0/24(rw,sync,no_root_squash,no_all_squash)' >> /etc/exports
+echo ''$mountPoint' 192.168.10.0/24(rw,sync,no_root_squash,no_all_squash)' >> /etc/exports
 systemctl restart nfs-server  && echo SUCCESS configurating nfs-server
 firewall-cmd --permanent --zone=public --add-service=nfs
 firewall-cmd --permanent --zone=public --add-service=mountd
@@ -120,7 +151,7 @@ break
 fi
 elif [[ $variable != sd? ]]
 then
-echo 'Incorrect drive name'
+echo 'Incorrect drive name. Please input sd? type'
 else
 MY_ARRAY[i]=$variable
 fi
@@ -129,6 +160,8 @@ echo 'SUCCESS'
 echo -e 'Please input mount point'
 read mountPoint
 echo 'SUCCESS'
+return MY_ARRAY
+return mountPoint
 }
 
 function rollback_raid {
@@ -149,6 +182,7 @@ mdadm --zero-superblock /dev/"$u"1  && echo SUCCESS delete zero-superblock
 done
 lsblk
 }
+
 
 while true;
 do
