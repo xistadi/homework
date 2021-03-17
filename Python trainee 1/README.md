@@ -2,7 +2,7 @@
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-blue.svg)](https://www.python.org)
 
 ## How to start
----
+
 1. Clone project from github
     ```
     git clone https://github.com/xistadi/homework
