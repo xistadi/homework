@@ -1,6 +1,9 @@
 # EPAM homework: parsing jobs.tut.by
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-blue.svg)](https://www.python.org)
 
+## About
+Парсер ключевых слов по вакансиям для сайта [jobs.tut.by](https://jobs.tut.by).
+
 ## How to start
 
 1. Clone project from github
@@ -21,12 +24,7 @@
     ```
     pip install -r requirements.txt
     ```
-5. Run `homework.py`
-    ```zsh
-    #Linux/Mac
-    python3 homework.py
-    ```
+5. Run `app.py`
     ```bash
-    #Win cmd
     python homework.py
     ```
