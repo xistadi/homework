@@ -26,5 +26,5 @@
     ```
 5. Run `app.py`
     ```bash
-    python homework.py
+    python app.py
     ```
