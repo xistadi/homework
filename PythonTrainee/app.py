@@ -2,7 +2,7 @@ from Packages.parser import Parser
 
 
 def main():
-    """Основная (начальная) точка"""
+    """Main (starting) point"""
     a = Parser()
     a.get_url_jobs_tut_by_for_parse()
     a.get_links_for_parse()
