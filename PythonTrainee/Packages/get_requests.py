@@ -29,5 +29,5 @@ class GetRequests:
 
 
 if __name__ == "__main__":
-    response = GetRequests('http://google.com').get_requests()
+    response = GetRequests('http://google.com').get_response()
     print(GetRequests('http://google.com').get_main_text(response))

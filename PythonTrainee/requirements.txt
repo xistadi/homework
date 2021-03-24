@@ -6,6 +6,7 @@ chardet==4.0.0
 colorama==0.4.4
 idna==2.10
 iniconfig==1.1.1
+mock==4.0.3
 packaging==20.9
 pluggy==0.13.1
 py==1.10.0
