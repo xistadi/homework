@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eabe6c74-d979-4d4c-bba1-7b46787a5174" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Packages/get_requests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/get_requests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/test/test_parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/test/test_parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/test/test_requests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/test/test_requests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
