@@ -20,11 +20,12 @@ class Parser:
         self.url = f'https://rabota.by/search/vacancy?clusters=true&enable_snippets=true&salary=&st=searchVacancy&text={keyword}'
 
     def get_soup(self):
+        """Get soup (BS initialization)"""
         self.main_text = GetRequests(self.url).get_main_text(GetRequests(self.url).get_response())  # getting html pages from the resulting url
         self.soup = BeautifulSoup(self.main_text, features="html.parser")  # BS Initialization
 
     def get_links_for_parse(self):
-        """Html parse jobs.tut.by to get job links"""      
+        """Parse html job links"""
         # looking for a div with a class and in the resulting result we take all the links with a certain class
         self.links = self.soup.find('div', {'class': 'vacancy-serp'}).findAll('a', {'class': 'HH-LinkModifier'})
         if len(self.links) == 0:  # if nothing is found for the keyword
@@ -32,6 +33,7 @@ class Parser:
             raise Exception('По введенному ключевому слову ничего не найдено!')
 
     def get_dict_word_count_for_parse(self):
+        """Filling in the word count dictionary"""
         words_count = input('Какие слова ищем?(введите через пробел): ').split()
         for word_key in words_count:
             self.dict_word_count[word_key] = 0  # writing key and value = 0 to the dictionary
@@ -49,8 +51,9 @@ class Parser:
                         self.dict_word_count[key] += 1
             print('==========================\n' + second_url)
 
-    def get_avg(self):
-        for key, value in self.dict_word_count.items():
+    def get_avg_word_count(self):
+        """Get average word count"""
+        for key, value in self.dict_word_count.items():  # Filling in the word count avg dictionary
             self.dict_avg_count[key] = round((value / self.count), 1)
 
     def output_values(self):
@@ -70,5 +73,5 @@ if __name__ == "__main__":
     a.get_links_for_parse()
     a.get_dict_word_count_for_parse()
     a.parse_jobs_tut_by()
-    a.get_avg()
+    a.get_avg_word_count()
     a.output_values()

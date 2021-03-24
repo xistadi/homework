@@ -9,7 +9,7 @@ def main():
     a.get_links_for_parse()
     a.get_dict_word_count_for_parse()
     a.parse_jobs_tut_by()
-    a.get_avg()
+    a.get_avg_word_count()
     a.output_values()
 
 
