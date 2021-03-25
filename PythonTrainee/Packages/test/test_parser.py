@@ -4,27 +4,6 @@ import mock
 import builtins
 
 
-@pytest.fixture()
-def parser_url(url):
-    parser_url = Parser()
-    parser_url.url = url
-    parser_url.get_soup()
-    parser_url.get_links_for_parse()
-    return parser_url
-
-
-@pytest.fixture(scope="class")
-def parser():
-    parser = Parser()
-    parser.url = 'https://rabota.by/search/vacancy?clusters=true&enable_snippets=true&salary=&st=searchVacancy&text=python'
-    parser.get_soup()
-    parser.get_links_for_parse()
-    parser.dict_word_count = {'python': 0, 'linux': 0, 'flask': 0}  # enter the keywords values
-    parser.parse_jobs_tut_by()
-    parser.get_avg_word_count()
-    return parser
-
-
 class TestParser:
     @pytest.mark.xfail
     @pytest.mark.parametrize('url', ['https://rabota.by/search/vacancy?clusters=true&enable_snippets=true&salary=&st=searchVacancy&text=shotgun'])
@@ -38,10 +17,10 @@ class TestParser:
         assert len(parser_url.links) > 0, 'Ошибка в статус коде'
 
     def test_boundaries_avg(self, parser):
-        """Test that the occurrence of words "python", "linux", "flask" is within boundaries avg +-20"""
+        """Test that the occurrence of words "python", "linux", "flask" is within boundaries avg +-1"""
         mistakes = ''
         for key, value in parser.dict_avg_count.items():
-            if (value + 20) > parser.dict_word_count[key] / parser.count > (value - 20):  # if located within the boundaries of avg +20
+            if (value + 1) > parser.dict_word_count[key] / parser.count > (value - 1):  # if located within the boundaries of avg +-1
                 pass
             else:
                 mistakes += key  # adding keys to the error output string

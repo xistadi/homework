@@ -1,17 +1,4 @@
-from Packages.get_requests import GetRequests
 import pytest
-
-
-@pytest.fixture()
-def response(url):
-    response = GetRequests(url).get_response()
-    return response
-
-
-@pytest.fixture()
-def main_text(url):
-    main_text = GetRequests(url).get_main_text(GetRequests(url).get_response())
-    return main_text
 
 
 class TestRequests:

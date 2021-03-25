@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from Packages.get_requests import GetRequests
+from Packages.getrequests import GetRequests
 
 
 class Parser:
