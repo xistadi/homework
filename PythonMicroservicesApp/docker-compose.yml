@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  master:
+    build: ./master
+    command: python3 master.py
+    volumes:
+      - .:/master
+    ports:
+      - "3100:3100"
+    links:
+      - keeper
+
+  keeper:
+    build: ./keeper
+    command: python3 keeper.py
+    volumes:
+      - .:/keeper
+    ports:
+      - "3200:3200"
+    links:
+      - reaper
+
+  reaper:
+    build: ./reaper
+    command: python3 reaper.py
+    volumes:
+      - .:/reaper
+    ports:
+      - "3300:3300"
