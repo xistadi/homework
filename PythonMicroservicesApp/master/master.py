@@ -1,29 +1,32 @@
 import requests
-from os import system
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
-import datetime
 import flask
 from flask import jsonify 
 
-def get_data_from_keeper():
-    url = 'http://keeper:3200'
-    source = requests.get(url)
-    dict_for_api = source.json()
-    print(f'==========\n{dict_for_api}')
-    return dict_for_api
 
-def input_api(dict_for_api):
-    app = flask.Flask(__name__)
-    app.config["DEBUG"] = True
+class Master:
+    """Class master"""
 
-    @app.route('/', methods=['GET'])
-    def home():
-        return jsonify(dict_for_api)
-    app.run(host='0.0.0.0', port=3100)
+    def __init__(self):
+        self.dict_for_api = {}
+
+    def get_data_from_keeper(self):
+        """Get json from keeper"""
+        url = 'http://keeper:3200'  # url to get json dict from keeper
+        source = requests.get(url)
+        self.dict_for_api = source.json()
+
+    def show_api(self):
+        """Show dict api localhost port 3100"""
+        app = flask.Flask(__name__)
+        app.config["DEBUG"] = True
+
+        @app.route('/', methods=['GET'])
+        def home():
+            return jsonify(self.dict_for_api)
+        app.run(host='0.0.0.0', port=3100)
+
 
 if __name__ == "__main__":
-    dict_for_api = get_data_from_keeper()
-    input_api(dict_for_api)
+    a = Master()
+    a.get_data_from_keeper()
+    a.show_api()
