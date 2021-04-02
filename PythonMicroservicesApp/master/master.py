@@ -1,6 +1,6 @@
 import requests
 import flask
-from flask import jsonify 
+from flask import jsonify, render_template
 
 
 class Master:
@@ -22,11 +22,15 @@ class Master:
 
         @app.route('/', methods=['GET'])
         def home():
+            return render_template('kekw.html', dict_for_api=self.dict_for_api)
+
+        @app.route('/json', methods=['GET'])
+        def json():
             return jsonify(self.dict_for_api)
         app.run(host='0.0.0.0', port=3100)
 
 
 if __name__ == "__main__":
     a = Master()
-    a.get_data_from_keeper()
+    #a.get_data_from_keeper()
     a.show_api()

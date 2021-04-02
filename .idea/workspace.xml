@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e94d8727-3ce7-4705-a084-4aecd4d5ee83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/PythonTrainee/Packages/get_requests.py" beforeDir="false" afterPath="$PROJECT_DIR$/PythonTrainee/Packages/get_requests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PythonTrainee/Packages/parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/PythonTrainee/Packages/parser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PythonTrainee/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/PythonTrainee/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PythonMicroservicesApp/master/master.py" beforeDir="false" afterPath="$PROJECT_DIR$/PythonMicroservicesApp/master/master.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
