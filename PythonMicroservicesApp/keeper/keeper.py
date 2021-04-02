@@ -6,11 +6,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 import datetime
 import flask
-from flask import jsonify
+from flask import jsonify, request
 
 
 Base = declarative_base()
-engine = create_engine('sqlite:///sqlalchemy_microservices_app.db')
+engine = create_engine('sqlite:///sqlalchemy_microservices_app.db?check_same_thread=False')
 Base.metadata.create_all(engine)
 Base.metadata.bind = engine
 dbsession = sessionmaker(bind=engine)
@@ -83,9 +83,15 @@ class Keeper:
         app = flask.Flask(__name__)
         app.config["DEBUG"] = True
 
-        @app.route('/', methods=['GET'])
+        @app.route('/', methods=['POST', 'GET'])
         def home():
-            return jsonify(self.dict_for_api)
+            if request.method == 'POST':
+                a = Keeper()
+                a.get_data_from_reaper()
+                a.insert_sql()
+                return flask.redirect('http://localhost:3100')
+            else:
+                return jsonify(self.dict_for_api)
         app.run(host='0.0.0.0', port=3200)
 
 

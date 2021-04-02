@@ -22,7 +22,7 @@ class Master:
 
         @app.route('/', methods=['GET'])
         def home():
-            return render_template('kekw.html', dict_for_api=self.dict_for_api)
+            return render_template('home.html', dict_for_api=self.dict_for_api)
 
         @app.route('/json', methods=['GET'])
         def json():
@@ -32,5 +32,5 @@ class Master:
 
 if __name__ == "__main__":
     a = Master()
-    #a.get_data_from_keeper()
+    a.get_data_from_keeper()
     a.show_api()

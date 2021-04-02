@@ -1,6 +1,6 @@
 import requests
 import flask
-from flask import jsonify 
+from flask import jsonify, request
 
 
 class Reaper:
@@ -21,9 +21,14 @@ class Reaper:
         app = flask.Flask(__name__)
         app.config["DEBUG"] = True
 
-        @app.route('/', methods=['GET'])
+        @app.route('/', methods=['POST', 'GET'])
         def home():
-            return jsonify(self.all_rate)
+            if request.method == 'POST':
+                a = Reaper()
+                a.scrape_from_api()
+                return flask.redirect('http://localhost:3100')
+            else:
+                return jsonify(self.all_rate)
         app.run(host='0.0.0.0', port=3300)
 
 
