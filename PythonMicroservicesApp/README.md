@@ -1,5 +1,5 @@
 # EPAM homework: Microservices exchange rates from API
-[![made-with-python](https://img.shields.io/badge/Made%20with-Python-blue.svg)](https://www.python.org) [![made-with-flask](https://img.shields.io/badge/Made%20with-Flask-white.svg)](https://flask.palletsprojects.com/en/1.1.x/) [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/ab24db?icon=github)](https://github.com/xistadi/BookStore) [![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://www.donationalerts.com/c/xistadi)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-blue.svg)](https://www.python.org) [![made-with-flask](https://img.shields.io/badge/Made%20with-Flask-white.svg)](https://flask.palletsprojects.com/en/1.1.x/) [![Open Source? Yes!](https://badgen.net/badge/Open%20Source%20%3F/Yes%21/ab24db?icon=github)](https://github.com/xistadi/homework/edit/main/PythonMicroservicesApp) [![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://www.donationalerts.com/c/xistadi)
 
 
 ## About
