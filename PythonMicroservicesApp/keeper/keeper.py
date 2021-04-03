@@ -59,12 +59,12 @@ class Keeper:
         Base.metadata.create_all(engine)
         date = Dates()
         for rate in self.all_rate:
-            for kek, kek2 in rate.items():
-                if kek == 'Cur_Name':
-                    name_exrate = kek2
-                elif kek == 'Cur_OfficialRate':
-                    amount_exrate = kek2
-                    exrate = ExchangeRates(name=name_exrate, amount=amount_exrate, date=date)
+            for key, value in rate.items():
+                if key == 'Cur_Name':  # if key == name exchange rate
+                    name_exrate = value
+                elif key == 'Cur_OfficialRate':  # if key == amount exchange rate
+                    amount_exrate = value
+                    exrate = ExchangeRates(name=name_exrate, amount=amount_exrate, date=date)  # create new ExchangeRates in db
                     session.add(exrate)
         session.commit()
 

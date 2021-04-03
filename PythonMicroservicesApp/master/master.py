@@ -8,6 +8,8 @@ class Master:
 
     def __init__(self):
         self.dict_for_api = {}
+        self.url_keeper = 'http://localhost:3200'  # url to keeper
+        self.url_reaper = 'http://localhost:3300'  # url to reaper
 
     def get_data_from_keeper(self):
         """Get json from keeper"""
@@ -22,7 +24,7 @@ class Master:
 
         @app.route('/', methods=['GET'])
         def home():
-            return render_template('home.html', dict_for_api=self.dict_for_api)
+            return render_template('home.html', dict_for_api=self.dict_for_api, url_keeper=self.url_keeper, url_reaper=self.url_reaper)
 
         @app.route('/json', methods=['GET'])
         def json():

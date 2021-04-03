@@ -8,8 +8,9 @@ services:
       - .:/master
     ports:
       - "3100:3100"
-    links:
-      - keeper
+    depends_on:
+      keeper:
+        condition: service_healthy
 
   keeper:
     build: ./keeper
@@ -18,8 +19,14 @@ services:
       - .:/keeper
     ports:
       - "3200:3200"
-    links:
+    depends_on:
       - reaper
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3200" ]
+      interval: 5s
+      timeout: 10s
+      start_period: 3s
+      retries: 3
 
   reaper:
     build: ./reaper
